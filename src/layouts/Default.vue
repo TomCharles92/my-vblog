@@ -1,19 +1,40 @@
 <template>
   <div class="layout">
-    <header class="header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/recent-news/">最新动态</g-link>
-        <g-link class="nav__link" to="/social-circle/">社交圈</g-link>
-        <g-link class="nav__link" to="/blog-list/">博客列表</g-link>
-        <g-link class="nav__link" to="/open-source/">开源项目</g-link>
-      </nav>
-    </header>
-    <el-button>dd</el-button>
-    <slot/>
+    <!-- page-header -->
+    <section class="page-header">
+      Hello World
+    </section>
+
+    <!-- main-content -->
+    <el-row class="main-content">
+      <el-col :span="6" style="padding-right: 20px;">
+        <el-card class="box-card">
+          <!-- 菜单 -->
+          <el-menu :default-active="currentRoute" router>
+            <el-menu-item index="/">
+              <i class="el-icon-star-off"></i>
+              <span>最新动态</span>
+            </el-menu-item>
+            <el-menu-item index="/social-circle/">
+              <i class="el-icon-mobile-phone"></i>
+              <span>社交圈</span>
+            </el-menu-item>
+            <el-menu-item index="/blog-list/">
+              <i class="el-icon-edit-outline"></i>
+              <span>博客列表</span>
+            </el-menu-item>
+            <el-menu-item index="/open-source/">
+              <i class="el-icon-service"></i>
+              <span>开源项目</span>
+            </el-menu-item>
+          </el-menu>
+        </el-card>
+      </el-col>
+      <el-col :span="18">
+         <!-- Page 页面出口 -->
+        <slot />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -27,39 +48,53 @@ query {
 
 <script>
 import Vue from 'vue';
-import { Button, Select } from 'element-ui';
+import { Row, Col, Card, Menu, MenuItem } from 'element-ui';
 
 export default {
   created() {
-    Vue.use(Button)
-  }  
+    Vue.use(Row)
+    Vue.use(Col)
+    Vue.use(Card)
+    Vue.use(Menu)
+    Vue.use(MenuItem)
+  },
+  computed: {
+    currentRoute() {
+      return this.$route.path
+    }
+  }
 }
 </script>
 
+<style lang="scss" scoped>
+.page-header {
+    padding: 5rem 6rem;
+    color: #fff;
+    text-align: center;
+    background-color: #159957;
+    background-image: linear-gradient(120deg, #155799, #159957);
+}
+
+.main-content {
+    max-width: 64rem;
+    padding: 30px 0px 30px 0px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    min-height: 800px;
+}
+
+a.nav__link {
+  text-decoration: none;
+}
+</style>
+
 <style>
-body {
+/* body {
   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   margin:0;
   padding:0;
   line-height: 1.5;
 }
-
-.layout {
-  max-width: 760px;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 80px;
-}
-
-.nav__link {
-  margin-left: 20px;
-}
+*/
 </style>
