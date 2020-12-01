@@ -8,7 +8,7 @@
     <!-- main-content -->
     <el-row class="main-content">
       <el-col :span="6" style="padding-right: 20px;">
-        <el-card class="box-card">
+        <el-card class="box-card" shadow="never">
           <!-- 菜单 -->
           <el-menu :default-active="currentRoute" router>
             <el-menu-item index="/">

@@ -23,5 +23,14 @@ module.exports = {
         // }
       }
     }
-  ]
+  ],
+  templates: {
+    StrapiBlog: [
+      {
+        path: '/blog/:id',
+        // component 默认会去找 src/templates/{Collection}.vue
+        // component: './src/templates/Post.vue'
+      }
+    ]
+  }
 }
