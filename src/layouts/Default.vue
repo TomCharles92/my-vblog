@@ -60,7 +60,15 @@ export default {
   },
   computed: {
     currentRoute() {
-      return this.$route.path
+      let path = "/"
+      if (this.$route.path.startsWith(`/blog/`)) {
+        path = "/blog-list/"
+      } else if (this.$route.path.startsWith(`/followers/`)) {
+        path = "/social-circle/"
+      } else {
+        path = this.$route.path
+      }
+      return path
     }
   }
 }
